@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lab1-CompileBuildRun/README.md",
+                "file": "Lab8-Suid/README.md",
                 "mode": "source",
                 "source": false
               },
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Lab1-CompileBuildRun/README.md",
+                "file": "Lab8-Suid/README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,7 +113,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Lab1-CompileBuildRun/README.md",
+                "file": "Lab8-Suid/README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -142,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Lab1-CompileBuildRun/README.md",
+                "file": "Lab8-Suid/README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -170,6 +170,8 @@
   },
   "active": "9604a8ea788503dc",
   "lastOpenFiles": [
+    "Lab2-SystemCall/README.md",
+    "Lab8-Suid/README.md",
     "README.md",
     "Lab1-CompileBuildRun/README.md"
   ]
