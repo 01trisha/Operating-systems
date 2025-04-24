@@ -58,7 +58,6 @@ void ReverseFileContent(const char *src_path, const char *dst_path) {
             break;
         }
 
-        // Реверсируем содержимое буфера
         for (ssize_t i = 0; i < to_read / 2; i++) {
             char temp = buffer[i];
             buffer[i] = buffer[to_read - i - 1];
@@ -92,9 +91,9 @@ void CopyReverseCatalog(const char* src_dir) {
         perror("Ошибка при открытии каталога");
         return;
     }
-    struct dirent *entry; // чтение записей из каталога
+    struct dirent *entry; 
     while ((entry = readdir(dir)) != NULL) {
-        if (entry->d_type == DT_REG) { // проверка на регулярный файл
+        if (entry->d_type == DT_REG) { 
             char src_file_path[512];
             char dst_file_path[512];
             snprintf(src_file_path, sizeof(src_file_path), "%s/%s", src_dir, entry->d_name); // src_dir - наша директория, наш файл из dentry name, src_file_path = "/путь/до/file.txt"
