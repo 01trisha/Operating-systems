@@ -8,37 +8,34 @@
 
 #define PAGE_SIZE sysconf(_SC_PAGESIZE)
 
-// обработчик sigsegv
+//обработчик sigsegv
 void handle_sigsegv() {
     write(0, "получен sigsegv сигнал.", 24);
-    exit(1);
+	exit(1); 
 }
 
-// рекурсивная функция для демонстрации роста стека
+//рекурсивная функция для стека
 void resursive_stack_array() {
-    char array[4096]; // выделяем 4кб на стеке
-    printf("указатель на массив: %p \n", (void *) &array);
+    char array[4096];
+    printf("указатель на массив: %p \n", (void *) array);
     sleep(1);
-    resursive_stack_array(); // бесконечная рекурсия
+    resursive_stack_array(); 
 }
 
-// бесконечный цикл с выделением/освобождением кучи
-_Noreturn void heap_array_while() {
+//бесконечный цикл с выделением/освобождением кучи
+void heap_array_while() {
     while (true) {
         char *array = malloc(1*1024*1024); // выделяем очень большой блок
-        printf("указатель на массив: %p \n", (void *) &array);
+        printf("указатель на массив: %p \n", (void *) array);
         sleep(1);
-        free(array); // освобождаем
+        free(array);
     }
 }
 
-// создание и удаление региона памяти
+//создание и удаление региона памяти
 void create_add() {
-
-	printf("проверьте maps до создания региона\n");
-	printf("cat /proc/");
-
-	sleep(10);
+    printf("проверьте maps до создания региона\n");
+    sleep(10);
     size_t region_size = 10 * PAGE_SIZE; // 10 страниц
     printf("создаю новый регион памяти\n");
     void *region_addr = mmap(
@@ -66,7 +63,7 @@ void create_add() {
     sleep(10);
 }
 
-// изменение прав доступа к региону (без обработки ошибок)
+//изменение прав доступа к региону (без обработки ошибок)
 void create_add_change() {
     size_t region_size = 10 * PAGE_SIZE;
     void *region_addr = mmap(NULL, region_size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
@@ -103,7 +100,7 @@ void create_add_change() {
     }
 }
 
-// то же самое, но с обработкой sigsegv
+//то же самое, но с обработкой sigsegv
 void create_add_change_handled() {
     size_t region_size = 10 * PAGE_SIZE;
     void *region_addr = mmap(NULL, region_size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
@@ -123,7 +120,7 @@ void create_add_change_handled() {
         perror("mprotect");
         exit(1);
     }
-    signal(SIGSEGV, handle_sigsegv); // устанавливаем обработчик
+    signal(SIGSEGV, handle_sigsegv);
 
     printf("пытаюсь читать после mprotect(PROT_WRITE):\n");
     printf("%s\n", (char *) region_addr);
@@ -134,7 +131,7 @@ void create_add_change_handled() {
     }
 
     printf("пытаюсь писать после mprotect(PROT_READ):\n");
-    sprintf(region_addr, "%s", message); // здесь будет segfault, но перехваченный
+    sprintf(region_addr, "%s", message);// здесь будет segfault, но перехваченный
     if (munmap(region_addr, region_size) == -1) {
         perror("munmap");
         exit(EXIT_FAILURE);
@@ -175,13 +172,13 @@ int main() {
     printf("cat /proc/%d/maps\n", getpid());
 
 
-    sleep(2);
+    sleep(5);
     //resursive_stack_array(); //тест стека
     //heap_array_while(); //тест кучи
     //create_add(); // простой mmap
     //create_add_change(); //тест прав доступа
-    //create_add_change_handled(); //тест прав с обработчиком
+    create_add_change_handled(); //тест прав с обработчиком
 //	sleep(10);
-    create_add_part(); //частичное удаление
+    //create_add_part(); //частичное удаление
     return 0;
 }
