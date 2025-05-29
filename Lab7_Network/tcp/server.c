@@ -18,7 +18,7 @@ void handle_client(int client_socket) {
     while ((read_size = recv(client_socket, buffer, BUFFER_SIZE, 0)) > 0) {
         send(client_socket, buffer, read_size, 0);
     }
-
+    printf("connection to the client is lost");
     close(client_socket);
 }
 
