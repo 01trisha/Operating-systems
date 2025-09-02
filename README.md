@@ -11,6 +11,8 @@
 - **[Файлы и файловые системы](https://github.com/01trisha/Operating-systems/tree/main/course2/Lab3-FileSystems)**
 - **[SUID-бит](https://github.com/01trisha/operating-systems/tree/main/course2/Lab8-Suid)**
 - **ets in course2**
+- 
+
 **3 курс**
 
 - 
