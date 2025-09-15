@@ -23,6 +23,7 @@ int main() {
 		return -1;
 	}
 
+	pthread_exit(NULL);
 	return 0;
 }
 
