@@ -35,7 +35,6 @@ int main(){
     
     tom->age=10;
     tom->name="Tom";
-
     err = pthread_create(&tid, &attr, mythread, tom);
     if (err){
         printf("main: pthread_create failed: %s\n", strerror(err));
@@ -43,7 +42,7 @@ int main(){
         return -1;
     }
 
-    sleep(1);
+    //sleep(3);
 
     pthread_attr_destroy(&attr);
 
