@@ -114,6 +114,7 @@ int uthread_create(uthread_t *thread, void *(*start_routine)(void *), void *arg)
     mythread->state = UTHREAD_READY;
     mythread->stack = stack;
     mythread->next = NULL;
+
     makecontext(&mythread->ucontext, (void (*)(void))thread_wrapper, 1, mythread);
     uthreads[uthread_count] = mythread;
     *thread = mythread;
@@ -147,6 +148,7 @@ int uthread_join(uthread_t thread, void **retval) {
     }
     return 0;
 }
+
 void uthread_yield(void) {
     if (!current_thread) return;
     if (current_thread->state == UTHREAD_RUNNING) {
@@ -155,6 +157,8 @@ void uthread_yield(void) {
     }
     swapcontext(&current_thread->ucontext, &scheduler_context);
 }
+
+
 void uthread_exit(void *retval) {
     if (current_thread) {
         current_thread->retval = retval;
