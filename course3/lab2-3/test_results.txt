@@ -1,0 +1,24 @@
+=== Testing Synchronized List Implementation ===
+
+======================================
+List size: 100
+======================================
+
+--- Testing with mutex ---
+Running for 10 seconds...
+
+
+--- Testing with spinlock ---
+Running for 10 seconds...
+
+
+--- Testing with rwlock ---
+Running for 10 seconds...
+
+
+======================================
+List size: 1000
+======================================
+
+--- Testing with mutex ---
+Running for 10 seconds...
