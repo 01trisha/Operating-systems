@@ -14,13 +14,13 @@ typedef struct{
     int port;
     char path[MAX_URL_LEN];
     int minor_version;
-    
+
     struct{
         char name[256];
         char value[1024];
     } headers[MAX_HEADERS];
     int num_headers;
-    
+
     size_t headers_len;
 } http_request_t;
 
@@ -28,17 +28,17 @@ typedef struct{
     int status_code;
     int minor_version;
     char status_msg[256];
-    
+
     struct{
         char name[256];
         char value[1024];
     } headers[MAX_HEADERS];
     int num_headers;
-    
+
     size_t content_length;
     int chunked;
     int keep_alive;
-    
+
     size_t headers_len;
 } http_response_t;
 
