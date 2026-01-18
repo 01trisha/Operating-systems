@@ -26,24 +26,24 @@ typedef struct cache_entry{
     char *url; //key
     char *headers; 
     size_t headers_len;
-    
+
     cache_chunk_t *chunks;
     cache_chunk_t *last_chunk;
     size_t total_size;
     size_t content_length;
-    
+
     cache_entry_status_t status;
     int http_status_code;
-    
+
     int ref_count;
     int downloader_active;
-    
+
     time_t last_access; //lru
     time_t created;
-    
+
     pthread_mutex_t mutex;
     pthread_cond_t data_available;//сигналит когда данные приходят новые
-    
+
     struct cache_entry *prev;
     struct cache_entry *next;
 } cache_entry_t;
@@ -54,10 +54,10 @@ typedef struct{
     size_t total_memory;
     size_t max_memory;
     size_t entry_count;
-    
+
     pthread_mutex_t mutex;
     pthread_cond_t gc_needed;
-    
+
     int shutdown;
 } cache_t;
 
